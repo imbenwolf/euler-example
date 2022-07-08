@@ -1,5 +1,5 @@
 const { BigNumber } = require("ethers");
-const { swap, Token, impersonateAccount } = require("./utils/utils");
+const { swap, Token, impersonateAccount, markets } = require("./utils/utils");
 const deposit = require("./utils/deposit");
 const mintSelfCollateralized = require("./utils/mintSelfCollateralized");
 
@@ -35,6 +35,7 @@ describe("Euler minting + swap", function () {
       account1
     );
 
+    await markets.connect(account1).enterMarket(0, WETH.address);
     await swap.connect(account1).swapUniExactInputSingle({
       subAccountIdIn: 0,
       subAccountIdOut: 0,
