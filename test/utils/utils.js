@@ -4,6 +4,7 @@ const IETOKEN = require("../interfaces/EToken.json");
 const TOKEN = require("../interfaces/ERC20.json");
 const MARKETS = require("../interfaces/Markets.json");
 const EXEC = require("../interfaces/Exec.json");
+const SWAP = require("../interfaces/Swap.json");
 
 const eToken = (address) =>
   new ethers.Contract(address, IETOKEN.abi, ethers.getDefaultProvider());
@@ -17,6 +18,11 @@ const markets = new ethers.Contract(
 const exec = new ethers.Contract(
   "0x59828FdF7ee634AaaD3f58B19fDBa3b03E2D9d80",
   EXEC.abi,
+  ethers.getDefaultProvider()
+);
+const swap = new ethers.Contract(
+  "0x7123C8cBBD76c5C7fCC9f7150f23179bec0bA341",
+  SWAP.abi,
   ethers.getDefaultProvider()
 );
 
@@ -36,5 +42,6 @@ module.exports = {
   Token,
   markets,
   exec,
+  swap,
   impersonateAccount,
 };

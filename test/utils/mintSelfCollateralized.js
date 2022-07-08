@@ -52,9 +52,9 @@ const mintSelfCollateralized = async (
     await markets.underlyingToEToken(mintTokenAddress)
   ).connect(signer);
 
-  await expect(eMintToken.mint(0, mintableAmount.add(1))).to.be.revertedWith(
-    "e/collateral-violation"
-  );
+  await expect(
+    eMintToken.mint(0, mintableAmount.add(singleMintToken.div(1000)))
+  ).to.be.revertedWith("e/collateral-violation");
 
   await eMintToken.mint(0, mintableAmount);
 
